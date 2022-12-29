@@ -1,0 +1,45 @@
+.containerHome{
+    background: linear-gradient(to bottom right,#0a1222, #345d8c);
+      text-decoration: none;
+      object-fit: cover;
+      background-attachment: fixed;
+  }
+
+
+  .sel{
+    margin-top: 20px;
+    position: relative;
+   display:inline-block; 
+  /* position: absolute;
+   position: fixed;
+   height: 100vh;
+   width: 250px;
+   left: 0px;
+   background: rgba(255, 255, 255, 0.1);
+   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.5);
+   
+   transition: all 0.3s linear; */
+  }
+
+   select{
+    display: inline-block;
+    border-radius: 45px;
+    /* height: 2.3em; */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    padding: 0.7rem 1rem;
+    margin-right: 5px;
+    text-align: center;
+    outline: 0;
+    border :0;
+    background-color:    #1b2840;
+    color: white;
+    appearance:none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+     } 
+ 
+   
+

@@ -7,8 +7,8 @@ export default function Paginated({allCountries, itemsPerPages, setCurrentPage, 
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
   const pages = []
-  for (let i = 1; i < Math.ceil(allCountries.length / itemsPerPages); i++) {
-      pages.push(i)
+  for (let i = 0; i < Math.ceil(allCountries.length / itemsPerPages); i++) {
+      pages.push(i+1)
   }
 
   const handleClick = (e) => {
@@ -25,7 +25,7 @@ export default function Paginated({allCountries, itemsPerPages, setCurrentPage, 
       }
   }
   const handlePrevbtn = () =>{
-      setCurrentPage(currentPage + - 1);
+      setCurrentPage(currentPage - 1);
 
       if((currentPage - 1) % pageNumberLimit === 0){
           setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);

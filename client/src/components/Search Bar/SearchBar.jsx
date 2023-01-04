@@ -16,8 +16,7 @@ export default function SearchBar (){
 
     function handleSubmit(e){
         e.preventDefault()
-        // if(name !== e.target.value) alert('Country not found')
-        dispatch(getByName(name))
+        dispatch(getByName(name));
         
     
     }

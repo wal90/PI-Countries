@@ -1,5 +1,5 @@
 require("dotenv").config();
-const {getAllCountries, findCountry, findCountryById, getAllActivities} = require("../utils")
+const {getAllCountries, findCountry, findCountryById, getAllActivities, getAllContinents} = require("../utils")
 const { Country, Activity} = require("../db")
 
 
@@ -8,7 +8,6 @@ const getCountries = async (req, res)=>{
         const { name } = req.query;
         const all= await getAllCountries()
         let result = name ? await findCountry(name) : all 
-        // console.log(result)
         res.status(200).send(result)
 
     } catch (error) {
@@ -20,8 +19,8 @@ const getById = async (req, res) =>{
     try {
         const {id} = req.params;
         let resultId = await findCountryById(id)
-        //console.log(resultId)
-        res.status(200).send(resultId)
+        resultId === null ? res.status(400).json({error: `id ${id} not found`}) :
+        res.status(200).send(resultId) 
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -49,7 +48,6 @@ const createActivity = async (req, res) =>{
             })
         newActivity.addCountry(country)
         })
-        // res.send(newActivity)
         res.status(200).json({ success: "Activity created" });
 
     } catch (error) {
@@ -59,7 +57,7 @@ const createActivity = async (req, res) =>{
 
 const getContinents = async (req, res) => {
     try {
-        const countries = await Country.findAll();
+        const countries = await getAllContinents();
         // const continents = new Set(countries.map((c) => c.continents))
        
 
@@ -78,6 +76,37 @@ const getActivities = async (req, res) =>{
     }
 }
 
+const changeActivity = async( req, res) =>{
+    const id = req.params.id
+    const activity = req.body
+
+    try {
+        let act = await Activity.update(activity,{
+            where:{
+                id: id
+            }
+        })
+        return res.json({ Changed: true})
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+
+const deleteActivity = async (req,res)=>{
+    const id = req.params.id
+
+    try {
+        let acti = await Activity.destroy({
+            where:{
+                id:id
+            }
+        })
+        return res.json( {Delete:true} )
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+
 
 
 module.exports = {
@@ -85,6 +114,8 @@ module.exports = {
     getById,
     createActivity,
     getContinents,
-    getActivities
+    getActivities,
+    changeActivity,
+    deleteActivity
 
 }

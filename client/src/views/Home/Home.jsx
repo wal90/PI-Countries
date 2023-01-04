@@ -18,7 +18,7 @@ export default function Home (){
     console.log(allActivities)
     const [order, setOrder] = useState('')
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPages] = useState(10);
+    const [itemsPerPages] = useState(9);
     const indexOfLastItem = currentPage * itemsPerPages;
     const indexOfFirstItem = indexOfLastItem - itemsPerPages;
     const currentCountries = allCountries.slice(indexOfFirstItem, indexOfLastItem)

@@ -7,7 +7,7 @@ router.get ("/", getCountries);
 
 router.get ("/:id", getById);
 
-router.get("/conti", getContinents);
+router.get("/country/continents", getContinents);
 
 
 module.exports = router;

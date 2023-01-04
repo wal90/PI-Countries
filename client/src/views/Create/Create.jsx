@@ -3,33 +3,10 @@ import { useSelector, useDispatch} from "react-redux";
 import { getCountries, postActivity} from "../../redux/actions.js";
 import s from "./create.module.css";
 import { Link } from "react-router-dom";
+import validate from "./validators.jsx"
 
 
-function validate(input) {
-    let errors = {};
-    if (!input.name) {
-      errors.name = "Name is required";
-    } else if (!/^[a-zA-Z]+$/.test(input.name)) {
-        errors.name = "Invalid name. The name must contain letters";}
-    if (!input.difficulty){
-        errors.difficulty = "Difficulty is required"
-    } if (input.difficulty < 1 && input.difficulty > 5){
-        errors.difficulty =  "Difficulty must be between 1 and 5"
-    }
-    if (!input.duration) {
-      errors.duration = "Duration is required";
-    } 
-    if(!input.season.length){
-        errors.season = "Season is required";
-    } 
-     if (!input.countries.length){
-        errors.countries= "Select at least one country"
-    }
-   
-    
-   
-    return errors;
-  }
+
 
 export default function Create (){
 
@@ -59,6 +36,9 @@ export default function Create (){
 
     function handleSubmit(e){
         e.preventDefault();
+        if(!input.name || !input.difficulty || !input.duration || !input.season || !input.countries) {
+            return alert ('Complete all required fields')
+        }
          postActivity(input);
         alert("Activity created")
          console.log(input)
@@ -74,7 +54,9 @@ export default function Create (){
     }
 
      function handleCheck(e){
-        if(e.target.checked){
+        if(e.target.checked >= 1){
+            alert("Choose only one season, please");
+        } else{
             setInput({
                 ...input,
                 season: e.target.value
@@ -83,11 +65,15 @@ export default function Create (){
     }
 
     function handleSelect(e){
-        setInput({
-            ...input,
-            countries:[...input.countries, e.target.value]
-        })
-    }
+        if(input.countries.includes(e.target.value)){
+            alert("The activity already has that country");
+        } else{
+             setInput({
+                ...input,
+               countries: [...input.countries, e.target.value],
+            }); 
+        }}
+
 
     function handleDelete(el){
         setInput({
@@ -141,7 +127,7 @@ export default function Create (){
                       ) :  <p className={s.data}>{input.difficulty}</p>}
             </div>
             <div  className={s.sInput}>
-                <label>Duration: </label>
+                <label>Duration in hours: </label>
                 <input 
                 type="number"
                 value={input.duration}
@@ -176,6 +162,7 @@ export default function Create (){
                  value="spring"
                  name="spring"
                  onChange={(e)=>handleCheck(e)} />Spring </label>
+
                
             </div>
             <div></div>
@@ -200,15 +187,7 @@ export default function Create (){
                 
             </div>
             <div className={s.create}>
-                {/* {errors.name || 
-                errors.difficulty || 
-                errors.duration || 
-                errors.season || 
-                errors.countries ?
-                <button disabled>Create Activity</button>
-                : */}
                 <button type="submit">Create Activity</button>
-                {/* } */}
                
             </div>
 

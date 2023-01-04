@@ -48,19 +48,21 @@ const search =  await Country.findAll({
     })
 
 const res = !search.length ? "Country not found" : search 
-// console.log(search)
 return res
 
 }
 
 const findCountryById = async (id) => {
-    return await Country.findByPk(id.toUpperCase(), {
+
+        return await Country.findByPk(id.toUpperCase(), {
         include:{
             model: Activity,
             attributes:  ["name", "difficulty", "duration", "season"],
             through: { attributes: [] }
         }
-    })
+    })  
+  
+    
 }
 
 const getAllActivities = async () => {
@@ -73,42 +75,15 @@ const getAllActivities = async () => {
     })
 }
 
-// const getAllContinents = async () => {
-//     const countries = await Country.findAll()
-//     //const continents = await countries.map(c=> c.continents[0])
-//     // // return continents
-//    const continents = new Set(countries.map((c) => c.capital))
-//         // let allContinents = [];
-//         // continents.forEach(c => allContinents.push(c))
-//         console.log(continents)
-//        return continents
 
+const getAllContinents = async () =>{
+    const countries = await Country.findAll();
+    const continents = new Set(countries.map((c) => c.continents))
+    let allContinents = [];
+    continents.forEach(c => allContinents.push(c))
+    return allContinents
+}
 
-
-// const countries = await Country.findAll({
-//     attributes:  ["population"]
-  
-//     ,
-//     order: [["name", "ASC"]],
-// })
-
-// const continents = countries.map((c) => c)
-
-// return continents
-
-
-// const continents = new Set(countries.map((c) => c.capital))
-
-// return continents
-
-
-
-        // const continents = new Set(countries.map((c) => c.continent))
-     
-        // const all = continents.forEach(c => c.continents)
-
-        // return all
-//}
 
 
 
@@ -117,6 +92,6 @@ module.exports = {
     getAllCountries,
     findCountry,
     findCountryById, 
-    getAllActivities
-    //getAllContinents
+    getAllActivities,
+    getAllContinents
 }

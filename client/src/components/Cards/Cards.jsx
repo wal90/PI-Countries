@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getCountries } from "../../redux/actions";
 import Card from "../Card/Card";
@@ -8,7 +8,7 @@ import { Fragment } from "react";
 import s from "./cards.module.css"
 
 export default function Cards({currentCountries}){
-    const countries = useSelector((state) =>state.countries);
+
     const dispatch = useDispatch()
 
     useEffect(()=>{

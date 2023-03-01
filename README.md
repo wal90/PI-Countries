@@ -1,4 +1,9 @@
 ![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
+![1](https://user-images.githubusercontent.com/71738691/222226436-102f9808-eddf-4d8d-906b-024d71e7cf5c.png)
+![2](https://user-images.githubusercontent.com/71738691/222226458-afebc74c-6ebe-4244-925b-a9b59f1133a3.png)
+![3](https://user-images.githubusercontent.com/71738691/222226478-6babb45a-e38d-4bd8-8352-df4b3a1effb4.png)
+![4](https://user-images.githubusercontent.com/71738691/222226496-f4ed21f5-b34a-4719-ab36-6b4e07eff4c0.png)
+![5](https://user-images.githubusercontent.com/71738691/222226510-8ddeb2b9-d56c-4529-a456-1fb069bc2be3.png)
 
 # Individual Project - Henry Countries
 
